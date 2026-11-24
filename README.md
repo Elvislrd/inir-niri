@@ -4,7 +4,32 @@ Configuración de **[inir](https://github.com/snowarch/iNiR)** + **niri** en Cac
 
 ![Barra con visualizador](docs/screenshots/bar-visualizador.png)
 
-![Escritorio con letras y reproductor](docs/screenshots/escritorio-lyrics.png)
+![Escritorio con letras y reproductor](docs/screenshots/escritorio-completo.png)
+
+## Qué obtienes al clonar
+
+![Escritorio completo](docs/screenshots/escritorio-completo.png)
+
+Todo esto, funcionando en **niri + inir**:
+
+- Escritorio con **letra de la canción** en vivo y visualizador cava a lo ancho.
+- **Barra** con reproductor, calendario, clima, recursos y batería.
+- **5 popups** personalizados (panel de control, música, órbita, calendario, recursos).
+- **Wallpaper Yami Luminas 1440p** incluido en `assets/wallpapers/`.
+- Mi **config completa** de inir y niri.
+
+## Recomendado: OpenCode + DeepSeek
+
+Para editar estas configs sin pelear con QML, yo uso **OpenCode** con **DeepSeek**:
+
+![OpenCode con DeepSeek](docs/screenshots/opencode-deepseek.png)
+
+- Instalas OpenCode, eliges DeepSeek como modelo.
+- Le pides en lenguaje normal: *“cambia la barra de música para que abra con clic”*.
+- Él edita los `.qml`, tú reinicias el shell y listo.
+
+Es mucho más rápido que tocar 3.500 archivos a mano.
+
 
 ## Qué incluye
 
@@ -34,6 +59,7 @@ Incluye las caras Iris (`IrisLyricsFace`, `IrisNowPlayingFace`) y los componente
 | `config/inir/widgets/` | Posición, tamaño y opciones de cada widget del escritorio |
 | `config/inir/desktop-profiles/` | Perfiles de escritorio guardados |
 | `config/niri/` | Mi config de niri (`config.kdl` + `config.d/`) |
+| `assets/wallpapers/` | Wallpaper **Yami Luminas 1440p** (video mp4) |
 
 ## Requisitos
 
