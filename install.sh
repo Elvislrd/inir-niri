@@ -35,6 +35,20 @@ if [ -d "$MOD" ]; then
   for f in "$SRC"/widgets/visualizer/* "$SRC"/widgets/lyrics/* "$SRC"/widgets/mediaControls/*; do
     put "$f" "$MOD/shared/background/widgets/$(basename "$(dirname "$f")")/$(basename "$f")"
   done
+
+  echo "[*] Popups (calendario/clima, recursos, música, panel)"
+  for f in "$SRC"/popups/bar/*.qml; do
+    put "$f" "$MOD/ii/bar/$(basename "$f")"
+  done
+  for f in "$SRC"/popups/mediaControls/*.qml; do
+    put "$f" "$MOD/shared/mediaControls/$(basename "$f")"
+  done
+  for f in "$SRC"/popups/mediaControls/components/*.qml; do
+    put "$f" "$MOD/shared/mediaControls/components/$(basename "$f")"
+  done
+  for f in "$SRC"/popups/controlPanel/*.qml; do
+    put "$f" "$MOD/ii/controlPanel/$(basename "$f")"
+  done
   for f in "$SRC"/common/widgets/*.qml; do
     put "$f" "$MOD/common/widgets/$(basename "$f")"
   done

@@ -17,6 +17,16 @@ Configuración de **[inir](https://github.com/snowarch/iNiR)** + **niri** en Cac
 
 Incluye las caras Iris (`IrisLyricsFace`, `IrisNowPlayingFace`) y los componentes de cava.
 
+### Popups personalizados
+
+| Captura | Archivo | Qué es |
+|---|---|---|
+| ![calendario](docs/screenshots/1-calendario-clima.png) | `popups/bar/ClockWidgetTooltip.qml` | Calendario + clima grande con fase lunar |
+| ![recursos](docs/screenshots/2-recursos-cpu-gpu.png) | `popups/bar/ResourcesPopup.qml` | CPU, GPU, RAM, disco y batería con medidores |
+| ![música](docs/screenshots/3-popup-musica-ELVIS.png) | `popups/mediaControls/components/MediaDashboardPlayer.qml` | Reproductor completo: carátula, info del sistema, cola |
+| ![panel](docs/screenshots/4-panel-control.png) | `popups/controlPanel/ControlPanelContent.qml` | Panel de control: clima, calendario, media, mascota |
+| ![orbit](docs/screenshots/5-reproductor-orbit.png) | `popups/mediaControls/components/MediaOrbitPlayer.qml` | Reproductor en órbita con carátulas alrededor |
+
 ### Configuración
 | Carpeta | Qué es |
 |---|---|
