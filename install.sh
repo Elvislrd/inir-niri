@@ -26,8 +26,8 @@ put() {
 
 echo "[*] Backup: $BACKUP"
 echo "[*] Widgets de escritorio"
-for f in widgets/visualizer/* widgets/lyrics/* widgets/mediaControls/*; do
-  put "shared/background/$f"
+for f in "$SRC"/widgets/visualizer/* "$SRC"/widgets/lyrics/* "$SRC"/widgets/mediaControls/*; do
+  put "shared/background/widgets/$(basename "$(dirname "$f")")/$(basename "$f")"
 done
 
 echo "[*] Componentes del visualizador (cava)"
