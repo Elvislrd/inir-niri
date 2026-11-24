@@ -1,73 +1,73 @@
-# inir-niri — mi escritorio en Linux
+# inir-niri — my Linux desktop
 
-Configuración de **[inir](https://github.com/snowarch/iNiR)** + **niri** en CachyOS: widgets de música, letras en el escritorio y mis ajustes del shell.
+**[Español](README.es.md)** · **[Русский](README.ru.md)**
 
-![Barra con visualizador](docs/screenshots/bar-visualizador.png)
+My **[inir](https://github.com/snowarch/iNiR)** + **niri** setup on CachyOS: music widgets, live lyrics on the desktop and my shell tweaks.
 
-## Qué obtienes al clonar
+![Bar with visualizer](docs/screenshots/bar-visualizador.png)
 
-![Escritorio completo](docs/screenshots/escritorio-completo.png)
+## What you get
 
-Todo esto, funcionando en **niri + inir**:
+![Full desktop](docs/screenshots/escritorio-completo.png)
 
-- Escritorio con **letra de la canción** en vivo y visualizador cava a lo ancho.
-- **Barra** con reproductor, calendario, clima, recursos y batería.
-- **5 popups** personalizados (panel de control, música, órbita, calendario, recursos).
-- **Wallpaper Yami Luminas 1440p** incluido en `assets/wallpapers/`.
-- Mi **config completa** de inir y niri.
+All of this running on **niri + inir**:
 
-## Recomendado: OpenCode + DeepSeek
+- Desktop with **live song lyrics** and a cava visualizer across the screen.
+- **Bar** with player, calendar, weather, resources and battery.
+- **5 custom popups** (control panel, music, orbit, calendar, resources).
+- **Yami Luminas 1440p wallpaper** included in `assets/wallpapers/`.
+- My **full config** for inir and niri.
 
-Para editar estas configs sin pelear con QML, yo uso **OpenCode** con **DeepSeek**:
+## Recommended: OpenCode + DeepSeek
 
-![OpenCode con DeepSeek](docs/screenshots/opencode-deepseek.png)
+To edit these configs without fighting QML, I use **OpenCode** with **DeepSeek**:
 
-- Instalas OpenCode, eliges DeepSeek como modelo.
-- Le pides en lenguaje normal: *“cambia la barra de música para que abra con clic”*.
-- Él edita los `.qml`, tú reinicias el shell y listo.
+![OpenCode with DeepSeek](docs/screenshots/opencode-deepseek.png)
 
-Es mucho más rápido que tocar 3.500 archivos a mano.
+- Install OpenCode, pick DeepSeek as the model.
+- Ask in plain language: *"make the music bar open on click"*.
+- It edits the `.qml`, you restart the shell, done.
 
+## What's included
 
-## Qué incluye
-
-### Widgets (código QML)
-| Widget | Qué hace |
+### Widgets (QML)
+| Widget | What it does |
 |---|---|
-| **Visualizer** | Barras de espectro (cava) en la barra o el escritorio, reaccionan al audio real |
-| **Media Controls** | Tarjeta con carátula, título, progreso y controles |
-| **Lyrics** | Letra de la canción en el escritorio, palabra por palabra, línea actual iluminada |
+| **Visualizer** | Cava spectrum bars on the bar or desktop, driven by real audio |
+| **Media Controls** | Card with cover art, title, progress and controls |
+| **Lyrics** | Song lyrics on the desktop, word by word, current line highlighted |
 
-Incluye las caras Iris (`IrisLyricsFace`, `IrisNowPlayingFace`) y los componentes de cava.
+Includes the Iris faces (`IrisLyricsFace`, `IrisNowPlayingFace`) and the cava components.
 
-### Popups personalizados
+### Custom popups
 
-| Captura | Archivo | Qué es |
+| Screenshot | File | What it is |
 |---|---|---|
-| ![panel](docs/screenshots/panel-control.png) | `popups/controlPanel/ControlPanelContent.qml` | Panel de control: clima, calendario, media, mascota |
-| ![orbit](docs/screenshots/reproductor-orbit.png) | `popups/mediaControls/components/MediaOrbitPlayer.qml` | Reproductor en órbita con carátulas alrededor |
-| ![música](docs/screenshots/popup-musica-elvis.png) | `popups/mediaControls/components/MediaDashboardPlayer.qml` | Reproductor completo: carátula, info del sistema, cola |
-| ![calendario](docs/screenshots/calendario-clima.png) | `popups/bar/ClockWidgetTooltip.qml` | Calendario + clima grande con fase lunar |
-| ![recursos](docs/screenshots/recursos-cpu-gpu.png) | `popups/bar/ResourcesPopup.qml` | CPU, GPU, RAM, disco y batería con medidores |
+| ![panel](docs/screenshots/panel-control.png) | `popups/controlPanel/ControlPanelContent.qml` | Control panel: weather, calendar, media, mascot |
+| ![orbit](docs/screenshots/reproductor-orbit.png) | `popups/mediaControls/components/MediaOrbitPlayer.qml` | Orbit player with covers around the current track |
+| ![music](docs/screenshots/popup-musica-elvis.png) | `popups/mediaControls/components/MediaDashboardPlayer.qml` | Full player: cover, system info, queue |
+| ![calendar](docs/screenshots/calendario-clima.png) | `popups/bar/ClockWidgetTooltip.qml` | Calendar + big weather with moon phase |
+| ![resources](docs/screenshots/recursos-cpu-gpu.png) | `popups/bar/ResourcesPopup.qml` | CPU, GPU, RAM, disk and battery gauges |
 
-### Configuración
-| Carpeta | Qué es |
+### Config
+| Folder | What it is |
 |---|---|
-| `config/inir/config.json` | Mi config completa del shell (barra, colores, paneles, atajos) |
-| `config/inir/widgets/` | Posición, tamaño y opciones de cada widget del escritorio |
-| `config/inir/desktop-profiles/` | Perfiles de escritorio guardados |
-| `config/niri/` | Mi config de niri (`config.kdl` + `config.d/`) |
-| `assets/wallpapers/` | Wallpaper **Yami Luminas 1440p** (video mp4) |
+| `config/inir/config.json` | My full shell config (bar, colours, panels, keybinds) |
+| `config/inir/widgets/` | Position, size and options of every desktop widget |
+| `config/inir/desktop-profiles/` | Saved desktop profiles |
+| `config/niri/` | My niri config (`config.kdl` + `config.d/`) |
+| `assets/wallpapers/` | **Yami Luminas 1440p** wallpaper (video mp4) |
 
-## Requisitos
+## Requirements
 
-- CachyOS / Arch
-- niri
-- inir shell (quickshell) 3.1.x
-- `cava` — `sudo pacman -S cava`
-- Reproductor con MPRIS (mpv, Spotify, Firefox…)
+- CachyOS / Arch (any distro with niri works)
+- **niri**
+- **inir** shell (quickshell) 3.1.x
+- **cava** — `sudo pacman -S cava`
+- Nerd Fonts + `Z003` (cursive font used by the lyrics)
+- Any MPRIS player (mpv, Spotify, Firefox…)
 
-## Instalar
+## Install
 
 ```bash
 git clone https://github.com/Elvislrd/inir-niri.git
@@ -76,31 +76,38 @@ bash install.sh
 systemctl --user restart inir.service
 ```
 
-- Hace **backup** de todo en `~/.config/inir-niri-backup/FECHA-HORA/`.
-- No borra nada: solo copia encima.
-- Las rutas `/home/USERNAME` se reemplazan por tu `$HOME` automáticamente.
+- Backs everything up to `~/.config/inir-niri-backup/DATE-TIME/`.
+- Never deletes anything, only copies over.
+- `/home/USERNAME` paths are replaced by your `$HOME` automatically.
 
-## Instalar solo los widgets (sin pisar tu config)
+## Widgets only (keep your own config)
 
 ```bash
-bash install.sh    # responde "no" si no quieres la config; o copia a mano:
 cp -r widgets/* ~/.config/quickshell/inir/modules/shared/background/widgets/
 cp common/widgets/*.qml ~/.config/quickshell/inir/modules/common/widgets/
 cp iris/widgets/*.qml ~/.config/quickshell/inir/modules/iris/widgets/
 ```
 
-## Activar los widgets
+## Turn the widgets on
 
-1. Escritorio → **editar widgets**.
-2. Añade **Visualizer**, **Media** y **Lyrics**.
-3. Ajusta tamaño y posición; el visualizador puede ir a lo ancho de la pantalla.
+1. Desktop → **edit widgets**.
+2. Add **Visualizer**, **Media** and **Lyrics**.
+3. Resize and place them; the visualizer can stretch across the whole screen.
 
-## Notas
+## Wallpaper
 
-- Si el visualizador no se mueve, revisa que `cava` exista y que el sink por defecto sea el de hardware.
-- Si no aparecen letras, la canción no está en LRCLIB; prueba otra.
-- La letra usa la cursiva **Z003** opcional (misma del popout de música).
+```bash
+cp assets/wallpapers/yami-luminas-1440p.mp4 ~/Pictures/Wallpapers/
+```
 
-## Licencia
+Then pick it in your shell settings.
 
-Uso libre. Comparte mejoras.
+## Notes
+
+- Visualizer not moving? Check `cava` is installed and the default sink is the hardware one.
+- No lyrics? The track isn't on LRCLIB; try another song.
+- Lyrics can use the **Z003** cursive (same as the music popup).
+
+## License
+
+Free to use. Share your improvements.
