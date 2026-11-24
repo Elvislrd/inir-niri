@@ -4,8 +4,6 @@ Configuración de **[inir](https://github.com/snowarch/iNiR)** + **niri** en Cac
 
 ![Barra con visualizador](docs/screenshots/bar-visualizador.png)
 
-![Escritorio con letras y reproductor](docs/screenshots/escritorio-completo.png)
-
 ## Qué obtienes al clonar
 
 ![Escritorio completo](docs/screenshots/escritorio-completo.png)
