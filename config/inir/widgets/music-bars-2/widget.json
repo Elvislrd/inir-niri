@@ -1,0 +1,28 @@
+{
+    "name": "Music Bars 2",
+    "icon": "graphic_eq",
+    "version": "1.0",
+    "author": "",
+    "description": "Second twin of the custom music visualizer — bars, wave or organic, fully independent settings",
+    "category": "custom",
+    "main": "MusicBars2.qml",
+    "defaultConfig": {
+        "placementStrategy": "free",
+        "widgetScale": 100,
+        "widgetOpacity": 100,
+        "colorMode": "auto",
+        "dim": 0,
+        "x": 640,
+        "y": 560
+    },
+    "resizableAxes": {
+        "width": "contentWidth",
+        "height": "contentHeight"
+    },
+    "defaultSize": {
+        "width": 304,
+        "height": 104
+    },
+    "freeShape": true,
+    "sizes": ["medium"]
+}

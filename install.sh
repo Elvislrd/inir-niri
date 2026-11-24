@@ -1,48 +1,76 @@
 #!/usr/bin/env bash
-# install.sh — widgets de música y letras para inir + niri
+# install.sh — widgets de música/letras + mi configuración de inir y niri
+# Hace backup de todo lo que reemplaza; nunca borra nada.
 set -euo pipefail
 
 SRC="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 MOD="$HOME/.config/quickshell/inir/modules"
+CFG="$HOME/.config/inir"
+NIRI="$HOME/.config/niri"
 STAMP="$(date +%Y%m%d-%H%M%S)"
-BACKUP="$HOME/.config/inir-music-widgets-backup/$STAMP"
+BACKUP="$HOME/.config/inir-niri-backup/$STAMP"
 
-if [ ! -d "$MOD" ]; then
-  echo "[!] No encuentro $MOD — ¿inir está instalado?"
-  exit 1
-fi
+ok=0; skip=0
 
-put() {
-  local rel="$1"
-  if [ ! -f "$MOD/$rel" ]; then
-    echo "[!] sin destino, se omite: $rel"
-    return 0
+put() { # put <origen> <destino>
+  local from="$1" to="$2"
+  mkdir -p "$(dirname "$to")"
+  if [ -f "$to" ]; then
+    mkdir -p "$BACKUP/$(dirname "${to#$HOME/}")"
+    cp -a "$to" "$BACKUP/${to#$HOME/}"
   fi
-  mkdir -p "$BACKUP/$(dirname "$rel")"
-  cp -a "$MOD/$rel" "$BACKUP/$rel"
-  cp -a "$SRC/$rel" "$MOD/$rel"
-  echo "[+] $rel"
+  if [[ "$from" == *.kdl || "$from" == *.json ]]; then
+    sed "s|/home/USERNAME|$HOME|g" "$from" > "$to"
+  else
+    cp -a "$from" "$to"
+  fi
+  echo "[+] ${to#$HOME/}"
+  ok=$((ok+1))
 }
 
-echo "[*] Backup: $BACKUP"
-echo "[*] Widgets de escritorio"
-for f in "$SRC"/widgets/visualizer/* "$SRC"/widgets/lyrics/* "$SRC"/widgets/mediaControls/*; do
-  put "shared/background/widgets/$(basename "$(dirname "$f")")/$(basename "$f")"
-done
+echo "[*] Backup en: $BACKUP"
 
-echo "[*] Componentes del visualizador (cava)"
-for f in common/widgets/CavaProcess.qml common/widgets/CavaSpectrum.qml \
-         common/widgets/CavaVisualizer.qml common/widgets/CavaWavyLine.qml \
-         common/widgets/AudioVisualizerLayer.qml; do
-  put "$f"
-done
+if [ -d "$MOD" ]; then
+  echo "[*] Widgets (código QML)"
+  for f in "$SRC"/widgets/visualizer/* "$SRC"/widgets/lyrics/* "$SRC"/widgets/mediaControls/*; do
+    put "$f" "$MOD/shared/background/widgets/$(basename "$(dirname "$f")")/$(basename "$f")"
+  done
+  for f in "$SRC"/common/widgets/*.qml; do
+    put "$f" "$MOD/common/widgets/$(basename "$f")"
+  done
+  for f in "$SRC"/iris/widgets/*.qml; do
+    put "$f" "$MOD/iris/widgets/$(basename "$f")"
+  done
+else
+  echo "[!] No encuentro $MOD — se omiten los widgets (¿inir instalado?)"
+  skip=$((skip+1))
+fi
 
-echo "[*] Caras Iris (lyrics / now playing)"
-for f in iris/widgets/IrisLyricsFace.qml iris/widgets/IrisNowPlayingFace.qml; do
-  put "$f"
-done
+if [ -d "$CFG" ]; then
+  echo "[*] Configuración de inir"
+  put "$SRC/config/inir/config.json" "$CFG/config.json"
+  for d in widgets desktop-profiles; do
+    [ -d "$SRC/config/inir/$d" ] || continue
+    while IFS= read -r -d '' f; do
+      put "$f" "$CFG/$d/${f#"$SRC/config/inir/$d/"}"
+    done < <(find "$SRC/config/inir/$d" -type f -print0)
+  done
+else
+  echo "[!] No encuentro $CFG — se omite la config de inir"
+  skip=$((skip+1))
+fi
+
+if [ -d "$NIRI" ]; then
+  echo "[*] Configuración de niri"
+  while IFS= read -r -d '' f; do
+    put "$f" "$NIRI/${f#"$SRC/config/niri/"}"
+  done < <(find "$SRC/config/niri" -type f -print0)
+else
+  echo "[!] No encuentro $NIRI — se omite niri"
+  skip=$((skip+1))
+fi
 
 echo
-echo "[*] Reinicia el shell:  systemctl --user restart inir.service"
-echo "[*] Luego activa los widgets: escritorio → editar widgets → Visualizer / Lyrics / Media"
-echo "[*] Listo."
+echo "[*] $ok archivos aplicados, $skip secciones omitidas."
+echo "[*] Reinicia:  systemctl --user restart inir.service   y recarga niri (Super+Shift+R)"
+echo "[*] Restaurar: copia desde $BACKUP"

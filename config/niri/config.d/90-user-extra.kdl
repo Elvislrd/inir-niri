@@ -1,0 +1,80 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// 90 — Your personal overrides
+// ─────────────────────────────────────────────────────────────────────────────
+//
+// This file is YOURS. iNiR updates will never overwrite it.
+// Put any custom configuration here: extra binds, per-app window rules,
+// output configuration, named workspaces, etc.
+//
+// Since Niri evaluates config top-to-bottom, settings here take effect
+// after all other config.d files. For window-rule properties, all matching
+// rules accumulate. For scalar values (like gaps), the last one wins.
+//
+// Examples:
+//
+//   // Named workspaces (sticky, always present)
+//   workspace "browser"
+//   workspace "code"
+//   workspace "music"
+//
+//   // Per-app workspace assignment
+//   window-rule {
+//       match app-id="firefox"
+//       open-on-workspace "browser"
+//   }
+//
+//   // Extra keybind
+//   binds {
+//       Mod+P { spawn "rofi" "-show" "drun"; }
+//   }
+//
+//   // Output config for your specific monitor
+//   output "DP-1" {
+//       mode "3440x1440@100.000"
+//       scale 1
+//       position x=0 y=0
+//   }
+// ─────────────────────────────────────────────────────────────────────────────
+
+// ═══════════════════════════════════════════════════════════════════════════
+// Mis atajos — paneles iNiR
+// ═══════════════════════════════════════════════════════════════════════════
+binds {
+    Mod+B { spawn "inir" "dashboard" "toggle"; }
+    Mod+U { spawn "inir" "sidebarLeft" "toggle"; }
+    Mod+I { spawn "inir" "sidebarRight" "toggle"; }
+    Mod+N { spawn "inir" "controlPanel" "toggle"; }
+    Mod+O { spawn "inir" "orbit" "open"; }
+
+    // Letras sincronizadas (lyse + LRCLIB) de lo que estés reproduciendo
+    Mod+Shift+Y { spawn "letras-toggle"; }
+}
+
+// Fijar el runtime de iNiR. Sin esto, si el OSD (drift-osd) aparece primero en
+// `qs list`, el launcher usa el directorio equivocado y los atajos Super+X de
+// iNiR no hacen nada. Ver detect_running_instance_dir() en scripts/inir.
+environment {
+    INIR_RUNTIME_DIR "/home/USERNAME/.config/quickshell/inir"
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// Blur de ventanas — niri 26.04+
+// ═══════════════════════════════════════════════════════════════════════════
+blur {
+    passes 4
+    offset 4.0
+}
+
+// Desenfoca lo que hay DETRÁS de la ventana, no la ventana en sí. Por eso la
+// ventana tiene que ser translúcida para que se note (kitty ya va en 0.28).
+// Este archivo es tuyo: las actualizaciones de iNiR no lo tocan.
+window-rule {
+    opacity 0.92
+
+    background-effect {
+        blur true        // el blur, propiamente dicho
+        xray false       // desenfoca también las ventanas de abajo, no solo el fondo
+        noise 0.02       // disimula el banding que deja el blur
+        saturation 1.1   // un poco más de color
+    }
+}

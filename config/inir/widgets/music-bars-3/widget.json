@@ -1,0 +1,30 @@
+{
+    "name": "Music Bars 3",
+    "icon": "graphic_eq",
+    "version": "1.0",
+    "author": "",
+    "description": "Copia gemela 3 del visualizador de musica — ajustes independientes",
+    "category": "custom",
+    "main": "MusicBars3.qml",
+    "defaultConfig": {
+        "placementStrategy": "free",
+        "widgetScale": 100,
+        "widgetOpacity": 100,
+        "colorMode": "auto",
+        "dim": 0,
+        "x": 640,
+        "y": 560
+    },
+    "resizableAxes": {
+        "width": "contentWidth",
+        "height": "contentHeight"
+    },
+    "defaultSize": {
+        "width": 304,
+        "height": 104
+    },
+    "freeShape": true,
+    "sizes": [
+        "medium"
+    ]
+}

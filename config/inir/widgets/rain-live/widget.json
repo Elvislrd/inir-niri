@@ -1,0 +1,25 @@
+{
+    "name": "Lluvia Viva",
+    "icon": "water_drop",
+    "version": "1.0",
+    "author": "",
+    "description": "Gotas de lluvia animadas sobre el escritorio cuando el clima lo dice (o siempre, si quieres) — partículas ligeras tintadas del tema",
+    "category": "custom",
+    "main": "RainLive.qml",
+    "defaultConfig": {
+        "placementStrategy": "free",
+        "widgetScale": 100,
+        "widgetOpacity": 100,
+        "colorMode": "auto",
+        "dim": 0,
+        "x": 0,
+        "y": 0,
+        "drops": 70,
+        "speed": 100,
+        "dropOpacity": 30,
+        "dropLength": 100,
+        "always": false
+    },
+    "resizableAxes": { "width": "contentWidth", "height": "contentHeight" },
+    "defaultSize": { "width": 1920, "height": 1080 }
+}

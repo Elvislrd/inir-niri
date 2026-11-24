@@ -1,0 +1,104 @@
+{
+  "name": "Lyrics",
+  "icon": "lyrics",
+  "version": "1.2",
+  "author": "",
+  "description": "Synced song lyrics only — theme-adaptive, movable, resizable, font/shape/scroll configurable",
+  "category": "custom",
+  "main": "Lyrics.qml",
+  "defaultConfig": {
+    "placementStrategy": "center",
+    "widgetScale": 100,
+    "widgetOpacity": 100,
+    "colorMode": "auto",
+    "dim": 0,
+    "showBackground": false,
+    "x": 640,
+    "y": 430,
+    "fontSize": 24,
+    "fontFamily": "theme",
+    "weight": "medium",
+    "italic": false,
+    "textCase": "normal",
+    "lineSpacing": 0.4,
+    "lines": 5,
+    "align": "center",
+    "scrollStyle": "smooth",
+    "activeScale": 1.18,
+    "accent": true,
+    "shadow": true,
+    "karaoke": true,
+    "syncOffset": 0,
+    "glow": 55,
+    "placeholder": true
+  },
+  "configKeys": {
+    "fontSize": { "type": "int", "default": 24, "min": 10, "max": 72, "label": "Font size" },
+    "fontFamily": {
+      "type": "string", "default": "theme", "label": "Font",
+      "options": [
+        { "label": "Theme", "value": "theme" },
+        { "label": "Segoe UI", "value": "Segoe UI" },
+        { "label": "Inter", "value": "Inter" },
+        { "label": "Space Grotesk", "value": "Space Grotesk" },
+        { "label": "JetBrains Mono", "value": "JetBrains Mono" },
+        { "label": "Noto Sans", "value": "Noto Sans" },
+        { "label": "Roboto", "value": "Roboto" },
+        { "label": "DejaVu Sans", "value": "DejaVu Sans" },
+        { "label": "Ubuntu", "value": "Ubuntu" },
+        { "label": "Serif", "value": "serif" },
+        { "label": "Monospace", "value": "monospace" }
+      ]
+    },
+    "weight": {
+      "type": "string", "default": "medium", "label": "Font weight",
+      "options": [
+        { "label": "Light", "value": "light" },
+        { "label": "Normal", "value": "normal" },
+        { "label": "Medium", "value": "medium" },
+        { "label": "SemiBold", "value": "semibold" },
+        { "label": "Bold", "value": "bold" },
+        { "label": "Black", "value": "black" }
+      ]
+    },
+    "italic": { "type": "bool", "default": false, "label": "Italic" },
+    "textCase": {
+      "type": "string", "default": "normal", "label": "Text case",
+      "options": [
+        { "label": "Normal", "value": "normal" },
+        { "label": "UPPER", "value": "upper" },
+        { "label": "lower", "value": "lower" },
+        { "label": "Title", "value": "title" }
+      ]
+    },
+    "lineSpacing": { "type": "real", "default": 0.4, "min": 0, "max": 1.5, "label": "Line spacing" },
+    "lines": { "type": "int", "default": 5, "min": 1, "max": 9, "label": "Visible lines" },
+    "align": {
+      "type": "string", "default": "center", "label": "Alignment",
+      "options": [
+        { "label": "Left", "value": "left" },
+        { "label": "Center", "value": "center" },
+        { "label": "Right", "value": "right" }
+      ]
+    },
+    "scrollStyle": {
+      "type": "string", "default": "smooth", "label": "Scroll style",
+      "options": [
+        { "label": "Smooth", "value": "smooth" },
+        { "label": "Fast", "value": "fast" },
+        { "label": "Spring", "value": "spring" },
+        { "label": "Linear", "value": "linear" },
+        { "label": "Instant", "value": "instant" }
+      ]
+    },
+    "activeScale": { "type": "real", "default": 1.18, "min": 1.0, "max": 2.0, "label": "Active line scale" },
+    "accent": { "type": "bool", "default": true, "label": "Accent colour on active line" },
+    "shadow": { "type": "bool", "default": true, "label": "Text outline (readability)" },
+    "karaoke": { "type": "bool", "default": true, "label": "Karaoke fill" },
+    "syncOffset": { "type": "int", "default": 0, "min": -3000, "max": 3000, "label": "Sync offset (ms)" },
+    "glow": { "type": "int", "default": 55, "min": 0, "max": 100, "label": "Neon glow" },
+    "placeholder": { "type": "bool", "default": true, "label": "Placeholder when idle" }
+  },
+  "resizableAxes": { "uniform": "widgetScale" },
+  "defaultSize": { "width": 660, "height": 180 }
+}
