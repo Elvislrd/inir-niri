@@ -111,6 +111,44 @@ if [ -d "$CFG" ]; then
       put "$f" "$CFG/$d/${f#"$SRC/config/inir/$d/"}"
     done < <(find "$SRC/config/inir/$d" -type f -print0)
   done
+
+  # Mi config viene de un laptop cuyo monitor se llama eDP-1. Si el tuyo se
+  # llama distinto, la barra y los widgets no aparecen. Lo ajusto solo.
+  SOURCE_OUTPUT="${SOURCE_OUTPUT:-eDP-1}"
+
+  detect_output() {
+    command -v niri >/dev/null 2>&1 || return 0
+    niri msg focused-output 2>/dev/null \
+      | sed -n 's/^Output "\([^"]*\)".*/\1/p' | head -1
+  }
+
+  echo
+  echo "==> Monitor"
+
+  current_output="$(detect_output)"
+
+  if [ -z "$current_output" ]; then
+    echo "  [!] No pude detectar tu monitor (¿estás dentro de niri?)."
+    echo "      Si la barra no aparece, ábrelo en una terminal de niri y corre"
+    echo "      ./install.sh otra vez: ajusta el nombre del monitor automáticamente."
+  elif [ "$current_output" = "$SOURCE_OUTPUT" ]; then
+    echo "  [+] Monitor: $current_output (coincide con la config)"
+  else
+    echo "  [+] Monitor: $current_output (la config era para $SOURCE_OUTPUT)"
+    echo "      Ajustando barra, widgets y perfiles a tu pantalla..."
+
+    monitor_files=("$CFG/config.json" "$CFG/desktop-profiles/profiles.json")
+    while IFS= read -r -d '' f; do
+      monitor_files+=("$f")
+    done < <(find "$CFG/widgets" -type f -print0 2>/dev/null)
+
+    for f in "${monitor_files[@]}"; do
+      [ -f "$f" ] || continue
+      sed -i "s/$SOURCE_OUTPUT/$current_output/g" "$f"
+    done
+
+    echo "  [+] Listo: si tienes varios monitores, revisa Ajustes → Pantallas."
+  fi
 else
   echo "  [!] No existe $CFG — se omite la config de iNiR"
   skip=$((skip + 1))

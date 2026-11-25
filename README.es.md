@@ -65,6 +65,10 @@ inir logs        # muestra por qué no arrancó el shell
   `./bootstrap.sh --ref v3.1.1`.
 - El script deja el **log** y la copia de iNiR en `/tmp/...`: copia ese texto
   y se revisa.
+- **No aparece la barra o los widgets:** mi config viene de un monitor llamado
+  `eDP-1`. `install.sh` detecta el tuyo y lo ajusta solo; si no pudo (por ejemplo
+  lo corriste fuera de niri), vuelve a correrlo desde una terminal dentro de niri,
+  o revisa `niri msg outputs` y Ajustes → Pantallas.
 - ¿Tienes iNiR pero tu shell no aparece? Cierra sesión y entra otra vez
   eligiendo **niri** en el login.
 

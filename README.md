@@ -65,6 +65,10 @@ inir logs        # shows why the shell didn't start
   `./bootstrap.sh --ref v3.1.1`.
 - The script leaves the **log** and the iNiR copy in `/tmp/...`: send that text
   and we'll look at it.
+- **No bar or widgets?** My config comes from a monitor called `eDP-1`.
+  `install.sh` detects yours and adapts it; if it couldn't (for example you ran it
+  outside niri), run it again from a terminal inside niri, or check
+  `niri msg outputs` and Settings → Displays.
 - iNiR installed but no shell? Log out and back in choosing **niri**.
 
 ## What you get

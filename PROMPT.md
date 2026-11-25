@@ -29,6 +29,9 @@ Haz esto, paso a paso, sin improvisar:
 4. No leas, copies ni subas ~/.config/inir/yt-cookies.txt ni los archivos *.bak-*.
 5. Al terminar dime: qué se instaló, qué archivos se reemplazaron y dónde quedó
    el backup para revertir.
+6. Si la barra o los widgets no aparecen, revisa que el monitor coincida:
+   `niri msg outputs`. Mi config viene de un monitor llamado "eDP-1" e install.sh
+   lo ajusta solo; si no lo hizo, vuelve a correr ./install.sh dentro de niri.
 ```
 
 ## Prompt (English)
@@ -52,6 +55,9 @@ Do this step by step, don't improvise:
 4. Don't read, copy or upload ~/.config/inir/yt-cookies.txt or any *.bak-* file.
 5. When done, tell me: what got installed, which files were replaced, and where
    the backup is so I can revert.
+6. If the bar or widgets don't show up, check the monitor name matches:
+   `niri msg outputs`. My config comes from a monitor called "eDP-1" and
+   install.sh adapts it; if it didn't, run ./install.sh again inside niri.
 ```
 
 ---
