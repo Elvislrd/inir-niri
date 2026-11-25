@@ -2286,7 +2286,7 @@
     },
     "hotspot": {
         "band": "bg",
-        "password": "inirhotspot",
+        "password": "",
         "ssid": "iNiR Hotspot"
     },
     "hub": {

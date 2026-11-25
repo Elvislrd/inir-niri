@@ -2,3 +2,15 @@
 __pycache__/
 *.pyc
 .DS_Store
+
+# backups y archivos personales (nunca se suben)
+*.bak*
+*.bak-*
+backups/
+installed_listfile
+installed_true
+config.json.lock
+config.json.unreadable
+version
+version.json
+yt-cookies.txt

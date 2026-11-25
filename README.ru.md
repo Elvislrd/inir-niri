@@ -6,6 +6,45 @@
 
 ![Панель с визуализатором](docs/screenshots/bar-visualizador.png)
 
+## Впервые здесь? Сначала прочитайте это
+
+Этот репозиторий **не целый рабочий стол**: это *мой внешний вид* (виджеты, попапы
+и конфиги) для двух проектов, которые сделали другие люди.
+
+| # | Что нужно | Откуда берётся |
+|---|---|---|
+| 1 | **niri** — композитор (окна) | **Устанавливается**, не клонируется: `sudo pacman -S niri` · [репозиторий](https://github.com/YaLTeR/niri) |
+| 2 | **iNiR** — шелл (панель, панели, настройки) | **Клонируется**: [snowarch/iNiR](https://github.com/snowarch/iNiR) |
+| 3 | **Этот внешний вид** | Этот репозиторий 🙂 |
+
+> Другой дистрибутив? Не проблема: следуйте руководству iNiR
+> ([inir.space/docs/install](https://inir.space/docs/install/)) для niri + iNiR,
+> потом запустите `./install.sh` из этого репозитория. `bootstrap.sh` — только Arch/CachyOS.
+
+### Простой путь: одна команда
+
+`bootstrap.sh` проверяет, чего не хватает, при необходимости ставит niri + iNiR
+и в конце применяет мой сетап. Ничего не удаляет: всё заменённое уходит в бэкап.
+
+```bash
+git clone https://github.com/Elvislrd/inir-niri.git
+cd inir-niri
+./bootstrap.sh
+```
+
+В конце: **выйдите из сессии и войдите снова, выбрав «niri»** — готово.
+
+> Хотите, чтобы это сделала ИИ? Скопируйте промпт из [`PROMPT.md`](PROMPT.md).
+
+### Вручную (если niri + iNiR уже стоят)
+
+```bash
+git clone https://github.com/Elvislrd/inir-niri.git
+cd inir-niri
+./install.sh
+systemctl --user restart inir.service
+```
+
 ## Что вы получите
 
 ![Полный рабочий стол](docs/screenshots/escritorio-completo.png)
@@ -67,18 +106,13 @@
 - Nerd Fonts + `Z003` (курсив для текста песен)
 - Любой MPRIS-плеер (mpv, Spotify, Firefox…)
 
-## Установка
+## Что делает `install.sh`
 
-```bash
-git clone https://github.com/Elvislrd/inir-niri.git
-cd inir-niri
-bash install.sh
-systemctl --user restart inir.service
-```
-
+- Копирует мои виджеты, попапы и конфиги **поверх** уже установленного iNiR.
 - Делает **бэкап** всего в `~/.config/inir-niri-backup/ДАТА-ВРЕМЯ/`.
 - Ничего не удаляет, только копирует поверх.
 - Пути `/home/USERNAME` автоматически заменяются на ваш `$HOME`.
+- Если iNiR не найден, подскажет запустить `./bootstrap.sh`.
 
 ## Только виджеты (не трогая свой конфиг)
 
@@ -111,3 +145,7 @@ cp assets/wallpapers/yami-luminas-1440p.mp4 ~/Изображения/Wallpapers/
 ## Лицензия
 
 Свободно используйте. Делитесь улучшениями.
+
+- Шелл **iNiR** принадлежит [snowarch](https://github.com/snowarch/iNiR), лицензия **GPL-3.0**.
+- Мои конфиги и виджеты распространяются под той же лицензией, так как часть файлов
+  является производной от iNiR. См. [`NOTICE.md`](NOTICE.md).

@@ -6,6 +6,45 @@ My **[inir](https://github.com/snowarch/iNiR)** + **niri** setup on CachyOS: mus
 
 ![Bar with visualizer](docs/screenshots/bar-visualizador.png)
 
+## New here? Read this first
+
+This repo **is not a full desktop**: it's *my look* (widgets, popups and configs)
+for two projects made by other people.
+
+| # | What you need | Where it comes from |
+|---|---|---|
+| 1 | **niri** — the compositor (the windows) | It's **installed**, not cloned: `sudo pacman -S niri` · [repo](https://github.com/YaLTeR/niri) |
+| 2 | **iNiR** — the shell (bar, panels, settings) | It's **cloned**: [snowarch/iNiR](https://github.com/snowarch/iNiR) |
+| 3 | **This look** | This repo 🙂 |
+
+> On another distro? No problem: follow iNiR's guide
+> ([inir.space/docs/install](https://inir.space/docs/install/)) for niri + iNiR,
+> then run `./install.sh` from this repo. `bootstrap.sh` is Arch/CachyOS only.
+
+### The easy way: one command
+
+`bootstrap.sh` checks what's missing, installs niri + iNiR if needed, and applies
+my setup at the end. It never deletes anything: whatever it replaces goes to a backup.
+
+```bash
+git clone https://github.com/Elvislrd/inir-niri.git
+cd inir-niri
+./bootstrap.sh
+```
+
+When it finishes: **log out, log back in choosing "niri"** and you're done.
+
+> Prefer to let an AI do it? Copy the prompt from [`PROMPT.md`](PROMPT.md).
+
+### The manual way (you already have niri + iNiR)
+
+```bash
+git clone https://github.com/Elvislrd/inir-niri.git
+cd inir-niri
+./install.sh
+systemctl --user restart inir.service
+```
+
 ## What you get
 
 ![Full desktop](docs/screenshots/escritorio-completo.png)
@@ -67,18 +106,13 @@ Includes the Iris faces (`IrisLyricsFace`, `IrisNowPlayingFace`) and the cava co
 - Nerd Fonts + `Z003` (cursive font used by the lyrics)
 - Any MPRIS player (mpv, Spotify, Firefox…)
 
-## Install
+## What `install.sh` does
 
-```bash
-git clone https://github.com/Elvislrd/inir-niri.git
-cd inir-niri
-bash install.sh
-systemctl --user restart inir.service
-```
-
+- Copies my widgets, popups and configs **over** your existing iNiR.
 - Backs everything up to `~/.config/inir-niri-backup/DATE-TIME/`.
 - Never deletes anything, only copies over.
 - `/home/USERNAME` paths are replaced by your `$HOME` automatically.
+- If iNiR isn't found, it tells you to run `./bootstrap.sh`.
 
 ## Widgets only (keep your own config)
 
@@ -111,3 +145,7 @@ Then pick it in your shell settings.
 ## License
 
 Free to use. Share your improvements.
+
+- The **iNiR** shell is by [snowarch](https://github.com/snowarch/iNiR), licensed **GPL-3.0**.
+- My configs and widgets are shared under the same license, because several files
+  are derived from iNiR. See [`NOTICE.md`](NOTICE.md).
