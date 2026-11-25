@@ -45,6 +45,27 @@ cd inir-niri
 systemctl --user restart inir.service
 ```
 
+### Что выбрать?
+
+| Ваша ситуация | Команда |
+|---|---|
+| Нет niri и iNiR (или не уверены) | `./bootstrap.sh` |
+| niri + iNiR уже работают | `./install.sh` |
+
+### Если что-то не работает
+
+```bash
+inir doctor      # проверяет установку и чинит что может
+inir logs        # показывает, почему не запустился шелл
+```
+
+- Ошибка компиляции (`makepkg`, `fakeroot`, `make`):
+  `sudo pacman -S --needed base-devel`
+- Не клонируется iNiR: проверьте интернет или зафиксируйте версию:
+  `./bootstrap.sh --ref v3.1.1`.
+- Скрипт оставляет **лог** и копию iNiR в `/tmp/...`: пришлите этот текст.
+- iNiR есть, но шелла не видно? Выйдите и войдите снова, выбрав **niri**.
+
 ## Что вы получите
 
 ![Полный рабочий стол](docs/screenshots/escritorio-completo.png)

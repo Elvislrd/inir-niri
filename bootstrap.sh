@@ -118,15 +118,32 @@ else
   fi
 
   tmp="$(mktemp -d)"
-  trap 'rm -rf "$tmp"' EXIT
 
   if [ -n "$INIR_REF" ]; then
-    git clone --depth 1 --branch "$INIR_REF" "$INIR_REPO" "$tmp/iNiR"
+    git clone --depth 1 --branch "$INIR_REF" "$INIR_REPO" "$tmp/iNiR" \
+      || die "No pude clonar iNiR (versión $INIR_REF). ¿Existe esa versión?"
   else
-    git clone --depth 1 "$INIR_REPO" "$tmp/iNiR"
+    git clone --depth 1 "$INIR_REPO" "$tmp/iNiR" \
+      || die "No pude clonar iNiR. Revisa tu conexión a internet."
   fi
 
-  ( cd "$tmp/iNiR" && ./setup install -y )
+  log="$tmp/setup.log"
+  if ! ( cd "$tmp/iNiR" && ./setup install -y 2>&1 | tee "$log" ); then
+    warn "El instalador de iNiR falló. No apliqué tus configs."
+    warn "Registro completo: $log"
+    warn "Copia de iNiR:     $tmp/iNiR"
+    warn "Si el error menciona makepkg, fakeroot o compilación:"
+    warn "  sudo pacman -S --needed base-devel"
+    die "Pásame el error de arriba y lo revisamos."
+  fi
+
+  if [ ! -d "$SHELL_DIR/modules" ]; then
+    warn "El instalador terminó, pero no encuentro $SHELL_DIR/modules"
+    warn "Registro: $log"
+    die "Prueba a reiniciar la sesión y correr ./bootstrap.sh de nuevo."
+  fi
+
+  rm -rf "$tmp"
   ok "iNiR instalado"
 fi
 

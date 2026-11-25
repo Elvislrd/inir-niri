@@ -45,6 +45,29 @@ cd inir-niri
 systemctl --user restart inir.service
 ```
 
+### ¿Cuál uso?
+
+| Tu situación | Comando |
+|---|---|
+| No tengo niri ni iNiR (o no estoy seguro) | `./bootstrap.sh` |
+| Ya uso niri + iNiR y me funciona | `./install.sh` |
+
+### Si algo falla
+
+```bash
+inir doctor      # revisa la instalación y arregla lo que pueda
+inir logs        # muestra por qué no arrancó el shell
+```
+
+- Error de compilación (`makepkg`, `fakeroot`, `make`):
+  `sudo pacman -S --needed base-devel`
+- No puede clonar iNiR: revisa internet, o fija una versión con
+  `./bootstrap.sh --ref v3.1.1`.
+- El script deja el **log** y la copia de iNiR en `/tmp/...`: copia ese texto
+  y se revisa.
+- ¿Tienes iNiR pero tu shell no aparece? Cierra sesión y entra otra vez
+  eligiendo **niri** en el login.
+
 ## Qué obtienes
 
 ![Escritorio completo](docs/screenshots/escritorio-completo.png)
